@@ -5,7 +5,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Data
 public class MemberDTO {
-    private long id;
+    private Long id;
     private String memberId;
     private String memberPassword;
     private String memberName;

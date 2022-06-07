@@ -15,15 +15,25 @@
 
     </head>
     <body>
-        <jsp:include page="//layout/header.jsp" flush="false"></jsp:include>
-        <h2>글목록</h2>
+        <jsp:include page="../layout/header.jsp" flush="false"></jsp:include>
+
+        <div class="container mt-3">
+            <form action="/search" method="get">
+                <select name="searchType">
+                    <option value="boardTitle">제목</option>
+                    <option value="boardWriter">작성자</option>
+                </select>
+                <input type="text" name="q" placeholder="검색어입력">
+                <input type="submit" value="검색">
+            </form>
+        </div>
+
         <div class="container">
             <table class="table">
                 <tr>
                     <th>글번호</th>
                     <th>글제목</th>
                     <th>작성자</th>
-                    <th>글내용</th>
                     <th>조회수</th>
                     <th>작성시간</th>
                 </tr>
@@ -31,8 +41,7 @@
                     <tr>
                         <td>${board.id}</td>
                         <td>${board.boardTitle}</td>
-                        <td>${board.boardWriter}</td>
-                        <td>${board.boardContents}</td>
+                        <td><a href="/detail?id=${board.id}">"${board.boardWriter}"</td>
                         <td>${board.boardHits}</td>
                         <td><fmt:formatDate pattern="yyyy-MM-dd hh:mm:ss"
                                             value="${board.boardCreatedDate}"></fmt:formatDate></td>

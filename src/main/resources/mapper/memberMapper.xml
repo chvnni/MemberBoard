@@ -7,13 +7,45 @@
 
     <insert id="save" parameterType="member">
         insert into mem_table(memberId, memberPassword, memberName, memberEmail, memberMobile, memberFileName)
-        values(#{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile}, #{memberFileName})
+        values (#{memberId}, #{memberPassword}, #{memberName}, #{memberEmail}, #{memberMobile}, #{memberFileName})
     </insert>
 
     <select id="login" parameterType="member" resultType="member">
-        select * from mem_table where memberId=#{memberId} and memberPassword=#{memberPassword}
+        select *
+        from mem_table
+        where memberId = #{memberId}
+          and memberPassword = #{memberPassword}
     </select>
 
+    <delete id="delete" parameterType="Long">
+        delete
+        from mem_table
+        where id = #{id}
+    </delete>
 
+    <select id="findAllMember" resultType="member">
+        select *
+        from mem_table
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="member">
+        select *
+        from mem_table
+        where id = #{id}
+    </select>
+
+    <update id="update" parameterType="member">
+        update mem_table
+        set memberName   = #{memberName},
+            memberEmail  = #{memberEmail},
+            memberMobile = #{memberMobile}
+        where id = #{id}
+    </update>
+
+    <select id="duplicate" parameterType="String" resultType="String">
+        select memberId
+        from mem_table
+        where memberId = #{memberId}
+    </select>
 
 </mapper>
